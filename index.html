@@ -48,7 +48,7 @@ p{margin:0}
 .mono{font-family:var(--f-mono)}
 .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal);display:flex;align-items:center;gap:10px}
 .kicker::before{content:"";width:28px;height:3px;background:repeating-linear-gradient(90deg,var(--signal) 0 10px,transparent 10px 16px)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:4px;padding:12px 18px;font-weight:800;cursor:pointer;text-decoration:none;letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:4px;padding:12px 18px;font-weight:800;cursor:pointer;text-decoration:none;letter-spacing:.01em;background:transparent;color:inherit}
 .btn-signal{background:var(--signal);color:var(--ink)}
 .btn-signal:hover{background:#90EBB4}
 .btn-line{background:transparent;border:1.5px solid #3A5446;color:#E6EDE9}
@@ -266,7 +266,7 @@ footer .legal{border-top:1px solid #16211C;margin-top:30px;padding-top:16px;disp
 .buy{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
 .qty{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
 .qty button{border:0;background:#fff;width:40px;cursor:pointer;font-size:18px;color:var(--ink)}
-.qty input{width:48px;text-align:center;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);color:var(--ink)}
+.qty input{background:#fff;width:48px;text-align:center;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);color:var(--ink)}
 table.spec{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--line)}
 table.spec th,table.spec td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 table.spec th{width:38%;color:var(--steel);font-weight:600}
@@ -295,23 +295,52 @@ form.rq input,form.rq select{border:1px solid var(--line);border-radius:6px;padd
 .match img{aspect-ratio:1;object-fit:contain}
 @media (max-width:820px){.req,.two{grid-template-columns:1fr}}
 
-/* fleet portal */
-.portal{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:30px 0 80px}
-.side{background:var(--ink);color:#C9D6D0;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:4px;align-self:start}
-.side a{text-decoration:none;padding:8px 10px;border-radius:6px;font-size:14px}
-.side a.on{background:#1C3127;color:#fff}
-.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
-.kpi b{font-size:28px;font-variation-settings:"wdth" 115;font-weight:900;display:block}
-.kpi span{font-size:13px;color:var(--steel)}
-.tcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
-.tcard .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:start}
-.tcard h3{font-size:22px;font-variation-settings:"wdth" 110;font-weight:900}
-.tcard .vin{font:12px var(--f-mono);color:var(--steel)}
-.kit{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.kit span{display:flex;gap:6px;align-items:center;background:var(--concrete);border-radius:6px;padding:5px 8px 5px 5px;font-size:12px}
-.kit img{width:30px;height:30px;object-fit:contain;background:#fff;border-radius:4px}
-@media (max-width:900px){.portal{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}}
+/* fleet portal: dark, same world as home */
+.fp-hero{padding:56px 0 30px;border-bottom:1px solid var(--line-dk);background:linear-gradient(180deg,var(--asphalt),var(--ink))}
+.fp-hero .row{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.fp-hero h1{font-size:clamp(40px,5.4vw,72px);margin-top:14px}
+.fp-hero p.sub{color:var(--steel-lt);max-width:52ch;margin-top:12px}
+.acct{display:flex;align-items:center;gap:12px;background:var(--asphalt);border:1px solid #284034;border-radius:12px;padding:12px 14px}
+.acct .av{width:40px;height:40px;border-radius:50%;background:#1F3A2C;color:var(--signal);display:grid;place-items:center;font-weight:900}
+.acct b{display:block;font-size:15px}
+.acct small{font:500 11px var(--f-mono);color:var(--steel-lt);letter-spacing:.06em}
+.fp-kpis{display:grid;grid-template-columns:repeat(3,1fr);margin-top:30px;border:1px solid var(--line-dk);border-radius:12px;overflow:hidden}
+.fp-kpis div{padding:18px 20px;border-left:1px solid var(--line-dk);background:rgba(17,28,23,.6)}
+.fp-kpis div:first-child{border-left:0}
+.fp-kpis b{display:block;font-size:30px;font-variation-settings:"wdth" 120;font-weight:900;color:#fff}
+.fp-kpis b.warn{color:var(--amber)}
+.fp-kpis span{font-size:13px;color:var(--steel-lt)}
+.portal{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:34px 0 84px}
+.side{display:flex;flex-direction:column;gap:2px;align-self:start;position:sticky;top:96px}
+.side a{text-decoration:none;padding:10px 12px;border-radius:6px;font-size:14px;color:#BFCDC6;border-left:3px solid transparent}
+.side a:hover{color:#fff}
+.side a.on{background:var(--asphalt);color:#fff;border-left-color:var(--signal)}
+.side .tag{font:500 11px var(--f-mono);color:#5F7A6D;letter-spacing:.06em;padding:14px 12px 0}
+.tcards{display:grid;gap:14px}
+.tcard{background:var(--asphalt);border:1px solid var(--line-dk);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:260px 1fr}
+.tcard .id{padding:20px;border-right:2px dashed #23372D;display:flex;flex-direction:column;gap:8px;position:relative}
+.tcard .unit{font:700 12px var(--f-mono);color:var(--ink);background:var(--signal);align-self:start;padding:3px 8px;border-radius:3px;letter-spacing:.06em}
+.tcard h3{font-size:24px;font-variation-settings:"wdth" 115;font-weight:900;text-transform:uppercase;line-height:1.05;color:#fff}
+.tcard .vin{font:12px var(--f-mono);color:var(--steel-lt);word-break:break-all}
+.tcard .vin i{font-style:normal;color:var(--signal)}
+.tcard .body{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.tcard .bh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.tcard .bh span{font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--steel-lt)}
+.status{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.status.due{background:rgba(242,179,61,.16);color:var(--amber);border:1px solid rgba(242,179,61,.4)}
+.status.ok{background:rgba(110,224,154,.12);color:var(--signal);border:1px solid rgba(110,224,154,.35)}
+.kit{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.kit a{background:var(--paper);color:var(--ink);border-radius:8px;text-decoration:none;display:flex;flex-direction:column;overflow:hidden}
+.kit img{aspect-ratio:4/3;object-fit:contain;padding:8px;background:#fff}
+.kit .kl{border-top:2px dashed var(--line);padding:8px 10px;display:flex;justify-content:space-between;gap:6px;font-size:13px}
+.kit .kl b{font-weight:900;font-variant-numeric:tabular-nums}
+.tcard .act{display:flex;gap:8px;flex-wrap:wrap}
+.fp-note{font-size:13px;color:var(--steel-lt);margin-top:6px}
+@media (max-width:900px){.portal{grid-template-columns:1fr}.side{position:static;flex-direction:row;flex-wrap:wrap}.tcard{grid-template-columns:1fr}.tcard .id{border-right:0;border-bottom:2px dashed #23372D}.fp-kpis{grid-template-columns:1fr}.fp-kpis div{border-left:0;border-top:1px solid var(--line-dk)}.fp-kpis div:first-child{border-top:0}}
+
+/* home teaser rows (unchanged look) */
+.truckrow .status.due{background:#FCEFD3;color:#7A5208;border:0}
+.truckrow .status.ok{background:#DDF6E6;color:#16532F;border:0}
 
 /* automation pages */
 .journey{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-bottom:20px}
@@ -513,7 +542,7 @@ const EX_VINS=[["4V4NC9EH9LN238411","Volvo"],["3AKJHHDR0KSKA5512","Freightliner"
 
 /* ---------- helpers ---------- */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const money=v=>"$"+v.toFixed(2);
+const money=v=>"$"+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let cart=[],garage=null,state={q:"",sys:[],mk:[],sort:"feat",onlyFit:false},searchLog=[];
 try{const g=localStorage.getItem("agoraGarage");if(g)garage=JSON.parse(g)}catch(e){}
@@ -751,16 +780,24 @@ function vRequest(){return `<div class="wrap"><div class="req">
  </form></div></div>`;}
 
 function vFleet(){const rows=fleetRows();const due=rows.filter(r=>r.due).length;
- return `<div class="light"><div class="wrap"><div class="portal">
-  <nav class="side" aria-label="Fleet portal"><b style="color:#fff;padding:8px 10px">Sample Fleet Co.</b><a class="on" href="#fleet">Trucks</a><a href="#fleet">Orders</a><a href="#fleet">Invoices</a><a href="#fleet">Saved lists</a><span class="mono" style="font-size:11px;color:#6F857A;padding:8px 10px">SAMPLE ACCOUNT</span></nav>
-  <div>
-   <h1 class="wide" style="font-size:40px;margin-bottom:16px">Your trucks</h1>
-   <div class="kpis"><div class="kpi"><b>${rows.length}</b><span>trucks saved by VIN</span></div><div class="kpi"><b>${due}</b><span>with filter service due</span></div><div class="kpi"><b>Net 30</b><span>terms (set per account)</span></div></div>
-   ${rows.map((r,k)=>`<div class="tcard"><div class="top"><div><span class="mono" style="font-size:12px;color:var(--steel)">${r.u}</span><h3>${r.d.year} ${r.d.make} ${r.model}</h3><span class="vin">VIN ${r.vin} · check digit ${r.d.valid?"valid":"invalid"} · built in ${r.d.country}</span></div><span class="status ${r.due?"due":"ok"}">${r.due?"Filter service due":"Up to date"}</span></div>
-    <div class="kit">${r.kit.map(i=>`<span><img src="${P[i].img}" alt="">${esc(P[i].t)} · ${money(P[i].p)}</span>`).join("")}</div>
-    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn btn-ink" data-kit="${k}">Reorder this truck's kit</button><button class="btn" style="border:1.5px solid var(--ink)" data-usetruck="${k}">Shop for this truck</button></div></div>`).join("")}
-   <p style="font-size:13px;color:var(--steel)">Reminders are sent by email when a truck's service interval passes. Intervals are set by the fleet manager.</p>
-  </div></div></div></div>`;}
+ return `<section class="fp-hero"><div class="wrap">
+  <div class="row"><div><p class="kicker">Fleet portal</p><h1 class="wide">Your trucks</h1><p class="sub">Every truck saved by VIN, the parts that fit it, and what is due for service.</p></div>
+   <div class="acct"><span class="av">SF</span><div><b>Sample Fleet Co.</b><small>SAMPLE ACCOUNT · NET 30</small></div></div></div>
+  <div class="fp-kpis"><div><b>${rows.length}</b><span>trucks saved by VIN</span></div><div><b class="warn">${due}</b><span>with filter service due</span></div><div><b>Net 30</b><span>payment terms on this account</span></div></div>
+ </div></section>
+ <div class="wrap"><div class="portal">
+  <nav class="side" aria-label="Fleet portal"><a class="on" href="#fleet">Trucks</a><a href="#fleet">Orders</a><a href="#fleet">Invoices</a><a href="#fleet">Saved lists</a><a href="#find-part">Part request</a></nav>
+  <div><div class="tcards">
+   ${rows.map((r,k)=>{const total=r.kit.reduce((s,i)=>s+P[i].p,0);return `<article class="tcard">
+    <div class="id"><span class="unit">${r.u}</span><h3>${r.d.year} ${r.d.make}<br>${r.model}</h3><span class="vin">VIN ${r.vin}<br><i>✓</i> ${r.d.valid?"Check digit valid":"Check VIN"} · built in ${r.d.country}</span></div>
+    <div class="body">
+     <div class="bh"><span>Service kit · ${r.kit.length} parts</span><span class="status ${r.due?"due":"ok"}">${r.due?"Filter service due":"Up to date"}</span></div>
+     <div class="kit">${r.kit.map(i=>`<a href="#product-${i}"><img src="${P[i].img}" alt=""><span class="kl"><span>${esc(P[i].t)}</span><b>${money(P[i].p)}</b></span></a>`).join("")}</div>
+     <div class="act"><button class="btn btn-signal" data-kit="${k}">Reorder kit · ${money(total)}</button><button class="btn btn-line" data-usetruck="${k}">Shop for this truck</button></div>
+    </div></article>`}).join("")}
+  </div>
+  <p class="fp-note">Service reminders are emailed when a truck's interval passes. Intervals are set by your fleet manager.</p></div>
+ </div></div>`;}
 
 /* ---------- render & routing ---------- */
 function render(){
